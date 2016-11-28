@@ -1,0 +1,69 @@
+body {
+    display: block;
+    background-color: #f0f0f0;
+    width: 100%;
+    overflow-x: hidden;
+}
+#tools {
+    position: fixed;
+    background-color: #CCF;
+    width: 100%;
+    height: 2em;
+    z-index: 100;
+}
+    #slider {
+        border: 0px;
+        width: 90%;
+    }
+#guia {
+    box-sizing: content-box;
+    position: absolute;
+    left: 0;
+    top: 3em;
+}
+#guia #parrilla {
+    margin: 3em 0 0 0;
+    position: relative;
+}
+#guia ul,
+#guia li {
+    margin: 0;
+    padding: 0;
+}
+#guia #canales {
+    z-index: 70;
+    position: absolute;
+    top: 0;
+    width: 7em;
+    background-color: #696;
+}
+#guia #canales li {
+    height: 1.5em;
+}
+#guia #eventos {
+    box-sizing: content-box;
+    width: 10000px;
+    position: absolute;
+    left: 0;
+    top: 0;
+    transition: left 0.5s ease-in-out;
+    z-index: 50;
+}
+
+#guia #eventos ul {
+    height: 1.5em;
+    position: relative;
+}
+#guia #eventos ul,
+#guia #eventos .evento {
+    display: block;
+    padding: 0;
+    margin: 0;
+    list-style: none;
+    box-sizing: content-box;
+}
+#guia #eventos .evento {
+    position: absolute;
+    background-color: #99F;
+    border: 1px solid #CCF;
+}
