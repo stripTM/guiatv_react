@@ -1,4 +1,5 @@
 import React from 'react';
+import Canal from './Canal';
 
 class Canales extends React.Component {
     render() {
@@ -18,10 +19,3 @@ class Canales extends React.Component {
 };
 
 export default Canales;
-class Canal extends React.Component {
-    render() {
-        return (
-            <li>{this.props.nombre}</li>
-        );
-    }
-}

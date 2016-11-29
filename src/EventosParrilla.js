@@ -2,13 +2,33 @@ import React from 'react';
 import EventosCanal from './EventosCanal';
 
 class EventosParrilla extends React.Component {
+    constructor(props) {
+        //console.log(props);
+      super(props);
+
+      // This binding is necessary to make `this` work in the callback
+      this.onDragStart = this.onDragStart.bind(this);
+      this.onDragEnd = this.onDragEnd.bind(this);
+    }
+
+    onDragStart(event) {
+        console.log("onDragStart", event);
+    }
+    onDragEnd(event) {
+        console.log("onDragEnd", event);
+    }
+
     render() {
         const eventosCanal = this.props.canales.map(
             canal => <EventosCanal key={canal.id} eventos={canal.eventos}/>
         );
 
         return (
-            <div id="eventos" style={{left: this.props.inicioParrilla +"px"}}>
+            <div id="eventos"
+                draggable  ={true}
+                onDragStart={this.onDragStart}
+                onDragEnd  ={this.onDragEnd}
+                style={{left: this.props.inicioParrilla +"px"}}>
                 <ul>{eventosCanal}</ul>
             </div>
         )
