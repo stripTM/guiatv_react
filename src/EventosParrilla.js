@@ -28,7 +28,7 @@ class EventosParrilla extends React.Component {
                 draggable  ={true}
                 onDragStart={this.onDragStart}
                 onDragEnd  ={this.onDragEnd}
-                style={{left: this.props.inicioParrilla +"px"}}>
+                style={{transform: "translate(" + this.props.inicioParrilla + "px, 0)"}}>
                 <ul>{eventosCanal}</ul>
             </div>
         )

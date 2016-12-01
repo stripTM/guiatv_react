@@ -4,22 +4,26 @@ class Tools extends React.Component {
     constructor(props) {
         //console.log(props);
       super(props);
-      this.state = {inicioVentana: 0};
+      console.log(props);
+      this.state = {inicioVentana: props.inicio};
 
       // This binding is necessary to make `this` work in the callback
       this.handleChangeSlider = this.handleChangeSlider.bind(this);
     }
+
+
     handleChangeSlider(event) {
-        //console.log("handleChangeSlider", event.target.value);
-        this.setState({ inicioVentana: -Math.floor(this.props.anchoGuia * event.target.value / 100) });
-        this.props.ponerInicio(this.state.inicioVentana);
+        var inicioVentana = -Math.floor(this.props.anchoGuia * event.target.value / 100);
+        this.setState({ inicioVentana: inicioVentana });
+        this.props.irA(inicioVentana);
     };
 
 
     render() {
+        var sliderValue = -Math.floor( this.props.inicio / this.props.anchoGuia  * 100)
         return (
             <div id="tools">
-                <input type="range" min="0" max="100" name="slider" id="slider" onInput={this.handleChangeSlider}/>
+                <input type="range" min="0" max="100" name="slider" id="slider" value={sliderValue} onInput={this.handleChangeSlider}/>[{this.props.inicio} , {sliderValue}]
             </div>
         )
     }

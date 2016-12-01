@@ -44,9 +44,8 @@ body {
     box-sizing: content-box;
     width: 10000px;
     position: absolute;
-    left: 0;
-    top: 0;
-    transition: left 0.5s ease-in-out;
+    transform: translate(0, 0);
+    transition: transform 0.5s ease-in-out;
     z-index: 50;
 }
 
@@ -54,16 +53,21 @@ body {
     height: 1.5em;
     position: relative;
 }
-#guia #eventos ul,
 #guia #eventos .evento {
+    position: absolute;
     display: block;
     padding: 0;
     margin: 0;
-    list-style: none;
-    box-sizing: content-box;
-}
-#guia #eventos .evento {
-    position: absolute;
     background-color: #99F;
     border: 1px solid #CCF;
+    height: 1.5em;
+    list-style: none;
+    box-sizing: content-box;
+    overflow: hidden;
+    text-overflow: ellipsis;
+
+}
+#guia #eventos .miniEvento {
+    text-align: center;
+    background-color: #BBF;
 }

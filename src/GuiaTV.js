@@ -6,27 +6,30 @@ class GuiaTV extends React.Component {
     constructor() {
         super();
 
-        this.ponerInicio = this.ponerInicio.bind(this);
+        this.irA = this.irA.bind(this);
 
         /* Generar información de los canales con sus eventos */
+        const ANCHO_GUIA = 10000;
         let canales = [];
-        for(var c=1; c<50; c++) {
+        for(var c=1; c<5; c++) {
             var eventos = [],
                 duracion;
             for(
                 var inicio = 0;
-                inicio <= 10000;
-                duracion = Math.floor(Math.random() * 1000) + 1, inicio += duracion
+                inicio <= ANCHO_GUIA;
+
                 ) {
-                inicio = (inicio > 10000) ? 10000 : inicio;
+                duracion = Math.floor(Math.random() * 1000) + 1;
+                inicio = (inicio > ANCHO_GUIA) ? ANCHO_GUIA : inicio;
                 eventos.push(
                     {
                         id: c+'-'+inicio,
                         nombre: 'Evento ' + inicio,
                         inicio: inicio,
-                        duracion: Math.floor(Math.random() * 1000) + 1
+                        duracion: duracion
                     }
                 );
+                inicio += duracion;
             }
             canales.push(
                 {
@@ -42,7 +45,7 @@ class GuiaTV extends React.Component {
         };
     }
 
-    ponerInicio(inicio) {
+    irA(inicio) {
         //console.log("Poner inicio", inicio);
         this.setState({ inicioParrilla: inicio});
     }
@@ -50,7 +53,7 @@ class GuiaTV extends React.Component {
     render() {
         return (
             <section id="guia">
-                <Tools anchoGuia="10000" ponerInicio={this.ponerInicio}/>
+                <Tools anchoGuia="10000" inicio={this.state.inicioParrilla} irA={this.irA}/>
                 <Parrilla canales={this.state.canales} inicioParrilla={this.state.inicioParrilla}/>
             </section>
         )
