@@ -53,11 +53,16 @@ class GuiaTV extends React.Component {
     render() {
         return (
             <section id="guia">
-                <Tools anchoGuia="10000" inicio={this.state.inicioParrilla} irA={this.irA}/>
-                <Parrilla canales={this.state.canales} inicioParrilla={this.state.inicioParrilla}/>
+                <Tools anchoGuia="10000"
+                    inicio={ this.state.inicioParrilla }
+                    irA={ this.irA } />
+                <Parrilla
+                    canales={ this.state.canales }
+                    inicioParrilla={ this.state.inicioParrilla }
+                    handleNewPosition={ this.irA } />
             </section>
         )
-    }a
+    }
 };
 
 export default GuiaTV;

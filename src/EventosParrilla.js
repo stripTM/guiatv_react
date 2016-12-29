@@ -1,40 +1,65 @@
-import React from 'react';
+import React, { Component, PropTypes } from 'react';
 import EventosCanal from './EventosCanal';
+import clickDrag from 'react-clickdrag';
 
 class EventosParrilla extends React.Component {
     constructor(props) {
-        //console.log(props);
-      super(props);
+        super(props);
 
-      // This binding is necessary to make `this` work in the callback
-      this.onDragStart = this.onDragStart.bind(this);
-      this.onDragEnd = this.onDragEnd.bind(this);
+        this.state = {
+            lastPositionX: 0,
+            lastPositionY: 0,
+            currentX: 0,
+            currentY: 0
+        };
     }
 
-    onDragStart(event) {
-        console.log("onDragStart", event.clientX);
-        this.setState({ dragging: true });
-    }
-    onDragEnd(event) {
-        console.log("onDragEnd", event.clientX);
-        this.setState({ dragging: false });
+    componentWillReceiveProps(nextProps) {
+
+        //this.props.irA(this.props.inicioParrilla + nextProps.dataDrag.moveDeltaX);
+        if(nextProps.dataDrag.isMoving) {
+            //console.log("dataDrag", nextProps.dataDrag);
+
+            //this.props.irA(this.props.inicioParrilla + nextProps.dataDrag.moveDeltaX);
+
+            this.setState({
+                currentX: this.state.lastPositionX + nextProps.dataDrag.moveDeltaX,
+                currentY: this.state.lastPositionY + nextProps.dataDrag.moveDeltaY
+            });
+            console.log("dataDrag", this.state.currentX);
+        }
+        else {
+            console.log("dataDrag sin mover");
+            this.setState({
+                currentX: this.props.inicioParrilla,
+                lastPositionX: this.props.inicioParrilla,
+                lastPositionY: this.state.currentY
+            });
+        }
     }
 
     render() {
         const eventosCanal = this.props.canales.map(
             canal => <EventosCanal key={canal.id} eventos={canal.eventos}/>
         );
+        var translation = 'translate('+this.state.currentX+'px, 0px)';
 
         return (
             <div id="eventos"
                 draggable  ={true}
-                onDragStart={this.onDragStart}
-                onDragEnd  ={this.onDragEnd}
-                style={{transform: "translate(" + this.props.inicioParrilla + "px, 0)"}}>
+                style={{transform: translation}}>
                 <ul>{eventosCanal}</ul>
             </div>
         )
     }
 };
 
-export default EventosParrilla;
+EventosParrilla.propTypes = {
+  canales: PropTypes.array.isRequired,
+  inicioParrilla: PropTypes.number.isRequired,
+  handleNewPosition: PropTypes.func.isRequired
+}
+
+export default clickDrag(EventosParrilla, {touch: true});
+
+//export default EventosParrilla;
