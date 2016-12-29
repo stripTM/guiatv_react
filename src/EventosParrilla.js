@@ -12,10 +12,12 @@ class EventosParrilla extends React.Component {
     }
 
     onDragStart(event) {
-        console.log("onDragStart", event);
+        console.log("onDragStart", event.clientX);
+        this.setState({ dragging: true });
     }
     onDragEnd(event) {
-        console.log("onDragEnd", event);
+        console.log("onDragEnd", event.clientX);
+        this.setState({ dragging: false });
     }
 
     render() {
