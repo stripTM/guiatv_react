@@ -59,7 +59,7 @@ class GuiaTV extends React.Component {
                 <Parrilla
                     canales={ this.state.canales }
                     inicioParrilla={ this.state.inicioParrilla }
-                    handleNewPosition={ this.irA } />
+                    irA={ this.irA } />
             </section>
         )
     }

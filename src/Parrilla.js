@@ -10,7 +10,7 @@ class Parrilla extends Component {
                 <EventosParrilla
                     canales={this.props.canales}
                     inicioParrilla={this.props.inicioParrilla}
-                    handleNewPosition={ this.props.handleNewPosition } />
+                    irA={ this.props.irA } />
             </div>
         )
     }
